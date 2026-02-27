@@ -15,10 +15,10 @@
 # limitations under the License.
 
 from typing import Any
-from time import sleep
 
 import threading
 import rclpy
+import time
 
 from rclpy.executors import MultiThreadedExecutor
 from rclpy.callback_groups import ReentrantCallbackGroup, MutuallyExclusiveCallbackGroup
@@ -59,10 +59,7 @@ class ScenarioManager(Node):
         self._scenario : ScenarioInstance| None = None
 
         self._declare_and_get_parameters()
-        if not self._initialize_services_clients(self.wait_for_services_timeout):
-            self.get_logger().error("Timeout while waiting for service")
-            exit(-1)
-
+        self._initialize_services_clients(self.wait_for_services_timeout)
         self._initialize_service_servers()
 
     def _declare_and_get_parameters(self):
@@ -109,7 +106,7 @@ class ScenarioManager(Node):
         self.get_logger().info(f"initial_scenario_path = {self._path_to_scenario_file}")
 
 
-    def _initialize_services_clients(self, service_wait_timeout: int| None = None) -> bool:
+    def _initialize_services_clients(self, service_wait_timeout: int| None = None) -> None:
         self.add_cli = self.create_client(
             AddCollisionObjects, "planning_scene_manager/add_collision_objects", callback_group=self.client_cbg)
         self.move_cli = self.create_client(
@@ -132,13 +129,26 @@ class ScenarioManager(Node):
             self.detach_cli, self.remove_cli, self.acm_cli,
             self.get_attached_obj_ids_cli, self.get_collision_obj_ids_cli
         ]:
+            self._wait_for_client(cli, self.wait_for_services_timeout)
+
+    def _wait_for_client(self, cli, service_wait_timout: float | None):
+        start = time.monotonic()
+
+        while True:
+            # wait up to 1 second to log process
+            if cli.wait_for_service(timeout_sec=1.0):
+                self.get_logger().info(f"{cli.service_name} ready.")
+                return
+
             self.get_logger().info(f"Waiting for {cli.service_name} to become ready.")
-            if not cli.wait_for_service(service_wait_timeout):
-                self.get_logger().warning(f"Timeout reached while waiting for {cli.service_name}")
-                return False
-            self.get_logger().info(f"{cli.service_name} ready.")
+
+            if service_wait_timout is not None:
+                elapsed = time.monotonic() - start
+                if elapsed >= service_wait_timout:
+                    raise TimeoutError(
+                        f"Timeout while waiting for {cli.service_name} ({service_wait_timout}s)"
+                    )
             
-        return True
                 
     def _initialize_service_servers(self):
         # both services are in same MutuallyExclusiveCallbackGroup to ensure that only one of them is executed at a time
@@ -335,9 +345,9 @@ def main():
         spin_thread.join()
     except (KeyboardInterrupt, ExternalShutdownException):
         pass
-    executor.remove_node(node)
-    node.destroy_node()
-    rclpy.shutdown()
+    finally:
+        node.destroy_node()
+        rclpy.shutdown()
 
 
 if __name__ == "__main__":
