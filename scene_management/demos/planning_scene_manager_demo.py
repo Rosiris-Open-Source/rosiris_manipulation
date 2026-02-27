@@ -24,7 +24,7 @@ from rclpy.executors import SingleThreadedExecutor
 from rclpy.node import Node
 from shape_msgs.msg import Mesh, SolidPrimitive
 from tf_transformations import quaternion_from_euler
-from rosiris_manipulation_utils.mesh_loader import MeshLoader
+from scene_management.mesh_loader import MeshLoader
 
 from rosiris_manipulation_interfaces.srv import (
     AddCollisionObjects,

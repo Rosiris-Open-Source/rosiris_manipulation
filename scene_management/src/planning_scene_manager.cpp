@@ -12,13 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "rosiris_manipulation_utils/planning_scene_manager.hpp"
+#include "scene_management/planning_scene_manager.hpp"
 
 // messages
 #include <rosiris_manipulation_interfaces/msg/collision_entry.hpp>
 #include <rosiris_manipulation_interfaces/msg/service_error_code.hpp>
 #include <rosiris_manipulation_interfaces/msg/service_result.hpp>
-namespace rosiris_manipulation_utils
+namespace scene_management
 {
 
 namespace rosiris_manip_srv = rosiris_manipulation_interfaces::srv;
@@ -888,4 +888,4 @@ PlanningSceneManager::convert_touch_links_to_collision_matrix_update(
   return cmu;
 }
 
-}  // namespace rosiris_manipulation_utils
+}  // namespace scene_management

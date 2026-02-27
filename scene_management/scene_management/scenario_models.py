@@ -18,7 +18,7 @@ from shape_msgs.msg import Mesh as MeshMsg
 from shape_msgs.msg import SolidPrimitive as SolidPrimitiveMsg
 from std_msgs.msg import Header as HeaderMsg
 
-from rosiris_manipulation_utils.mesh_loader import MeshLoader
+from scene_management.mesh_loader import MeshLoader
 
 class MsgClass(ABC):
     @abstractmethod

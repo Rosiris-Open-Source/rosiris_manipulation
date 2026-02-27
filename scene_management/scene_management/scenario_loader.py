@@ -19,8 +19,8 @@ from enum import IntEnum
 from packaging.version import Version
 from typing import override, Type, TypeVar, Any, Dict, Generic, ClassVar
 
-from rosiris_manipulation_utils.scenario_models import Scenario
-from rosiris_manipulation_utils.utilities import resolve_resource_path
+from scene_management.scenario_models import Scenario
+from scene_management.utilities import resolve_resource_path
 
 class LoadScenarioError(Exception):
     """Raised when a scenario cannot be loaded or validated."""

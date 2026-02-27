@@ -40,7 +40,7 @@
 #include <rosiris_manipulation_interfaces/srv/move_collision_objects.hpp>
 #include <rosiris_manipulation_interfaces/srv/remove_collision_objects.hpp>
 #include <rosiris_manipulation_interfaces/srv/update_allowed_collisions.hpp>
-namespace rosiris_manipulation_utils
+namespace scene_management
 {
 class PlanningSceneManager : public rclcpp::Node
 {
@@ -168,6 +168,6 @@ private:
   rclcpp::Service<rosiris_manipulation_interfaces::srv::GetCollisionObjectIds>::SharedPtr
     get_active_collision_obj_ids_srv_;
 };
-}  // namespace rosiris_manipulation_utils
+}  // namespace scene_management
 
 #endif  // CONTROLLER_MANAGER__CONTROLLER_MANAGER_HPP_

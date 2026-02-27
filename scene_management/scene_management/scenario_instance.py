@@ -3,8 +3,8 @@ from typing import List
 from rosiris_manipulation_interfaces.msg import CollisionMatrixUpdate as CollisionMatrixUpdateMsg
 from rosiris_manipulation_interfaces.msg import CollisionObject as RosirisColObjMsg
 
-from rosiris_manipulation_utils.scenario_loader import ScenarioLoader, NoSuitableLoaderError, LOADER_REGISTRY
-from rosiris_manipulation_utils.utilities import get_file_type
+from scene_management.scenario_loader import ScenarioLoader, NoSuitableLoaderError, LOADER_REGISTRY
+from scene_management.utilities import get_file_type
 
 class ScenarioInstance():
     def __init__(self, path: str):

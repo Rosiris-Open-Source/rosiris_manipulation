@@ -18,7 +18,7 @@ from pathlib import Path
 from geometry_msgs.msg import Point
 from shape_msgs.msg import Mesh, MeshTriangle
 
-from rosiris_manipulation_utils.utilities import resolve_resource_path
+from scene_management.utilities import resolve_resource_path
 
 class MeshLoader:  
 

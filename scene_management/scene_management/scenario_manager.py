@@ -46,9 +46,9 @@ from rosiris_manipulation_interfaces.msg import (
     ServiceResult,
 )
 
-from rosiris_manipulation_utils.scenario_loader import LoadScenarioError
-from rosiris_manipulation_utils.scenario_instance import ScenarioInstance
-from rosiris_manipulation_utils.scenario_loader import NoSuitableLoaderError
+from scene_management.scenario_loader import LoadScenarioError
+from scene_management.scenario_instance import ScenarioInstance
+from scene_management.scenario_loader import NoSuitableLoaderError
 
 class ScenarioManager(Node):
 

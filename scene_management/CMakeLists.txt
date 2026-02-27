@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(rosiris_manipulation_utils)
+project(scene_management)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -62,10 +62,10 @@ install(
 )
 
 # Python modules
-ament_python_install_package(rosiris_manipulation_utils)
+ament_python_install_package(scene_management)
 
 install(PROGRAMS
-  rosiris_manipulation_utils/scenario_manager.py
+  scene_management/scenario_manager.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
