@@ -321,7 +321,7 @@ void PlanningSceneManager::validateObjectsExist(
 
 void PlanningSceneManager::addCollisionObjects(
   const std::shared_ptr<rosiris_manip_srv::AddCollisionObjects::Request> request,
-  std::shared_ptr<rosiris_manip_srv::AddCollisionObjects::Response> response)
+  const std::shared_ptr<rosiris_manip_srv::AddCollisionObjects::Response> response)
 {
   std::vector<std::string> added_ids;
   std::vector<std::string> not_added_ids;
@@ -409,7 +409,7 @@ void PlanningSceneManager::addCollisionObjects(
 
 void PlanningSceneManager::removeCollisionObjects(
   const std::shared_ptr<rosiris_manip_srv::RemoveCollisionObjects::Request> request,
-  std::shared_ptr<rosiris_manip_srv::RemoveCollisionObjects::Response> response)
+  const std::shared_ptr<rosiris_manip_srv::RemoveCollisionObjects::Response> response)
 {
   // This is the message we will send to the Master move_group
   moveit_msgs::msg::PlanningScene ps_diff;
@@ -489,7 +489,7 @@ void PlanningSceneManager::removeCollisionObjects(
 
 void PlanningSceneManager::attachCollisionObject(
   const std::shared_ptr<rosiris_manip_srv::AttachCollisionObject::Request> request,
-  std::shared_ptr<rosiris_manip_srv::AttachCollisionObject::Response> response)
+  const std::shared_ptr<rosiris_manip_srv::AttachCollisionObject::Response> response)
 {
   {  // Lock internal planning scene
     planning_scene_monitor::LockedPlanningSceneRW scene(planning_scene_monitor_);
@@ -556,7 +556,7 @@ void PlanningSceneManager::attachCollisionObject(
 
 void PlanningSceneManager::detachCollisionObject(
   const std::shared_ptr<rosiris_manip_srv::DetachCollisionObject::Request> request,
-  std::shared_ptr<rosiris_manip_srv::DetachCollisionObject::Response> response)
+  const std::shared_ptr<rosiris_manip_srv::DetachCollisionObject::Response> response)
 {
   {  // Lock internal planning scene
     planning_scene_monitor::LockedPlanningSceneRW scene(planning_scene_monitor_);
@@ -640,7 +640,7 @@ void PlanningSceneManager::detachCollisionObject(
 
 void PlanningSceneManager::moveCollisionObjects(
   const std::shared_ptr<rosiris_manip_srv::MoveCollisionObjects::Request> request,
-  std::shared_ptr<rosiris_manip_srv::MoveCollisionObjects::Response> response)
+  const std::shared_ptr<rosiris_manip_srv::MoveCollisionObjects::Response> response)
 {
   {  // Lock internal planning scene
     planning_scene_monitor::LockedPlanningSceneRW scene(planning_scene_monitor_);
@@ -750,7 +750,7 @@ void PlanningSceneManager::moveCollisionObjects(
 
 void PlanningSceneManager::updateAllowedCollisions(
   const std::shared_ptr<rosiris_manip_srv::UpdateAllowedCollisions::Request> request,
-  std::shared_ptr<rosiris_manip_srv::UpdateAllowedCollisions::Response> response)
+  const std::shared_ptr<rosiris_manip_srv::UpdateAllowedCollisions::Response> response)
 {
   auto [acm_updated_links, acm_update_failed_links] =
     applyCollisionMatrixUpdates(request->collision_matrix_updates);
@@ -781,8 +781,9 @@ void PlanningSceneManager::updateAllowedCollisions(
 void PlanningSceneManager::getAttachedCollisionObjectIds(
   const std::shared_ptr<
     rosiris_manipulation_interfaces::srv::GetAttachedCollisionObjectIds::Request>
-    _,
-  std::shared_ptr<rosiris_manipulation_interfaces::srv::GetAttachedCollisionObjectIds::Response>
+  /*request*/,
+  const std::shared_ptr<
+    rosiris_manipulation_interfaces::srv::GetAttachedCollisionObjectIds::Response>
     response)
 {
   {  // Lock internal planning scene
@@ -804,8 +805,10 @@ void PlanningSceneManager::getAttachedCollisionObjectIds(
 }
 
 void PlanningSceneManager::getCollisionObjectIds(
-  const std::shared_ptr<rosiris_manipulation_interfaces::srv::GetCollisionObjectIds::Request> _,
-  std::shared_ptr<rosiris_manipulation_interfaces::srv::GetCollisionObjectIds::Response> response)
+  const std::shared_ptr<
+    rosiris_manipulation_interfaces::srv::GetCollisionObjectIds::Request> /*request*/,
+  const std::shared_ptr<rosiris_manipulation_interfaces::srv::GetCollisionObjectIds::Response>
+    response)
 {
   std::vector<moveit_msgs::msg::CollisionObject> collision_objects;
   {  // Lock internal planning scene

@@ -101,47 +101,50 @@ private:
   void addCollisionObjects(
     const std::shared_ptr<rosiris_manipulation_interfaces::srv::AddCollisionObjects::Request>
       request,
-    std::shared_ptr<rosiris_manipulation_interfaces::srv::AddCollisionObjects::Response> response);
+    const std::shared_ptr<rosiris_manipulation_interfaces::srv::AddCollisionObjects::Response>
+      response);
 
   void removeCollisionObjects(
     const std::shared_ptr<rosiris_manipulation_interfaces::srv::RemoveCollisionObjects::Request>
       request,
-    std::shared_ptr<rosiris_manipulation_interfaces::srv::RemoveCollisionObjects::Response>
+    const std::shared_ptr<rosiris_manipulation_interfaces::srv::RemoveCollisionObjects::Response>
       response);
 
   void attachCollisionObject(
     const std::shared_ptr<rosiris_manipulation_interfaces::srv::AttachCollisionObject::Request>
       request,
-    std::shared_ptr<rosiris_manipulation_interfaces::srv::AttachCollisionObject::Response>
+    const std::shared_ptr<rosiris_manipulation_interfaces::srv::AttachCollisionObject::Response>
       response);
 
   void detachCollisionObject(
     const std::shared_ptr<rosiris_manipulation_interfaces::srv::DetachCollisionObject::Request>
       request,
-    std::shared_ptr<rosiris_manipulation_interfaces::srv::DetachCollisionObject::Response>
+    const std::shared_ptr<rosiris_manipulation_interfaces::srv::DetachCollisionObject::Response>
       response);
 
   void moveCollisionObjects(
     const std::shared_ptr<rosiris_manipulation_interfaces::srv::MoveCollisionObjects::Request>
       request,
-    std::shared_ptr<rosiris_manipulation_interfaces::srv::MoveCollisionObjects::Response> response);
+    const std::shared_ptr<rosiris_manipulation_interfaces::srv::MoveCollisionObjects::Response>
+      response);
 
   void updateAllowedCollisions(
     const std::shared_ptr<rosiris_manipulation_interfaces::srv::UpdateAllowedCollisions::Request>
       request,
-    std::shared_ptr<rosiris_manipulation_interfaces::srv::UpdateAllowedCollisions::Response>
+    const std::shared_ptr<rosiris_manipulation_interfaces::srv::UpdateAllowedCollisions::Response>
       response);
 
   void getAttachedCollisionObjectIds(
     const std::shared_ptr<
       rosiris_manipulation_interfaces::srv::GetAttachedCollisionObjectIds::Request>
       _,
-    std::shared_ptr<rosiris_manipulation_interfaces::srv::GetAttachedCollisionObjectIds::Response>
+    const std::shared_ptr<
+      rosiris_manipulation_interfaces::srv::GetAttachedCollisionObjectIds::Response>
       response);
 
   void getCollisionObjectIds(
     const std::shared_ptr<rosiris_manipulation_interfaces::srv::GetCollisionObjectIds::Request> _,
-    std::shared_ptr<rosiris_manipulation_interfaces::srv::GetCollisionObjectIds::Response>
+    const std::shared_ptr<rosiris_manipulation_interfaces::srv::GetCollisionObjectIds::Response>
       response);
 
   rosiris_manipulation_interfaces::msg::ServiceResult triggerMoveGroupSceneUpdate(bool is_diff);
