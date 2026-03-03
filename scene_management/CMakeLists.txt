@@ -49,8 +49,6 @@ target_link_libraries(planning_scene_manager_node
   planning_scene_manager_component
 )
 
-ament_target_dependencies(planning_scene_manager_node ${THIS_PACKAGE_INCLUDE_DEPENDS})
-
 install(TARGETS
   planning_scene_manager_node
   DESTINATION lib/${PROJECT_NAME}
